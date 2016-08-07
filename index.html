@@ -1,0 +1,116 @@
+<html>
+<head>
+    <title>Intempt API Example</title>
+    <style type="text/css">
+        * {
+            margin: 2px 3px;
+        }
+        input[type="text"], input[type="number"] {
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+
+<p>
+    To make use of this page, do the following:
+    <ul>
+        <li>Create an organization</li>
+        <li>Create a tracker for domain, where this page would be ran at (<code>http://localhost</code> works)</li>
+        <li>From tracker deployment code, take <code>orgId</code>, <code>trackerId</code> and <code>trackerToken</code> and insert them int respective variables on this page
+    </ul>
+</p>
+
+<div>
+    <input type="text" placeholder="Enter value to identify your visitor by" name="visitorId"><button type="button" class="control-buttons" onclick="indentifyVisitor()" disabled="disabled">Identify Visitor</button>
+</div>
+<div>
+    <input type="number" placeholder="Enter custom variable value" name="customPropertyVal"><button type="button" class="control-buttons" onclick="trackCustomEvent()" disabled="disabled">Track Custom Event With Value</button>
+</div>
+<div>
+    <input type="number" placeholder="Enter price to track purchase" name="priceVal" min="1" step="any"><button type="button" class="control-buttons" onclick="trackPurchase()" disabled="disabled">Track Purchase</button>
+</div>
+
+<p>
+    To make use of notifications, do the following:
+    <ul>
+        <li>Create event in your tracker of type <code>Click</code> with CSS Path <code>#trigger-notification-btn</code></li>
+        <li>Create campaign, that would be triggered by this event happening on the page</li>
+        <li>Reload the page and click the button to trigger the notification</li>
+    </ul>
+</p>
+
+<div>
+    <button type="button" id="trigger-notification-btn" class="control-buttons" disabled="disabled">Trigger Notification</button>
+</div>
+
+<p>
+    To test API notifications client, set variable <code>apiMode</code> in the script on the page to <code>true</code>.
+</p>
+<p>
+    In API mode, you will see your notification message appearing just below this paragraph
+</p>
+
+<div id="notification-pod"></div>
+
+<script type="text/javascript">
+    window.orgId = "your-org-name";
+    window.trackerId = "your-tracker-name";
+    window.trackerToken = "your-tracker-token";
+    window.apiMode = false;
+</script>
+<script type="text/javascript">
+window.addEventListener("intempt." + window.trackerName + ".ready", function() {
+    //do something when tracker has been loaded;
+    //the tracker object becomes accessible at window._intempt["your-tracker-name"] after loading;
+
+    // In this case, we enable all interaction buttons upon receiving this event
+    var controlButtons = document.querySelectorAll('.control-buttons');
+    for (var i = 0; i < controlButtons.length; i++) {
+        controlButtons[i].disabled = false;
+    }
+});
+!function(a,b){if(window.__intempt&&window._intempt)a&&(window.__intempt.init_tracker?window.__intempt.init_tracker(a):window.__intempt.startup_configs.push(a));else{window.__intempt={},window.__intempt.startup_configs=[],a&&window.__intempt.startup_configs.push(a);var c=document.createElement("script");c.type="text/javascript",c.async=!0,c.src=b||"https://cdn.intempt.co/intempt.min.js";var d=document.getElementsByTagName("script")[0];d.parentNode.insertBefore(c,d)}}
+({orgId:window.orgId,trackerId:window.trackerId,token:window.trackerToken,apiMode:window.apiMode});
+</script>
+<script type="text/javascript">
+    window.indentifyVisitor = function() {
+        var visitorIdentifier = document.querySelector('[name="visitorId"]').value;
+
+        window._intempt[window.trackerId].identify({
+            identifier: visitorIdentifier
+        })
+    };
+    window.trackCustomEvent = function() {
+        var customPropertyValue = document.querySelector('[name="customPropertyVal"]').value;
+
+        window._intempt[window.trackerId].track("custom_collection", {
+            "custom.property": customPropertyValue
+        })
+    };
+    window.trackPurchase = function() {
+        var purchasePrice = +document.querySelector('[name="priceVal"]').value;
+
+        window._intempt[window.trackerId].track("purchase", {
+            "item": "Your item name",
+            "price": purchasePrice.toFixed(2),
+            "timestamp": new Date().getTime(),
+            "fixed.name": "John Smith",
+            "fixed.age": 28,
+            "fixed.color": ["255", "255", "255"],
+            "intempt.visit.trackcharge": purchasePrice.toFixed(2)
+        })
+    };
+</script>
+<script type="text/javascript">
+    var notificationPod = document.querySelector('#notification-pod');
+
+    window.addEventListener('intempt.notifications.notification', function(event) {
+        notificationPod.innerHTML = event.detail.html;
+    }, false);
+    window.addEventListener('intempt.notifications.dismissed', function(event) {
+        alert("Notification with ID " + event.detail.id + " was dismissed!");
+    }, false);
+</script>
+</body>
+<html>
