@@ -111,3 +111,8 @@ Once the visitor dismisses your notification, we automatically find it in the pa
     })
 
 Payload of this event contains dismissed notification content, both `id` and `html`
+
+#Example
+
+Check out `index.html` example, that has all the calls described in this `README.md` file!
+Follow the instructions in the file to prepare the example for usage!
