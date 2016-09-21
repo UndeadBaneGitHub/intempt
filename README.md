@@ -76,7 +76,8 @@ To recieve notification payload, you need to subscribe to `intempt.notifications
         // event.detail contains object payload, that looks like this:
         // {
         //     id: "abcdef12345",
-        //     html: "<div class="intempt-api-notificaiton-container" intempt-notification-id="8ce51fe2727fb" style="animation-name: intemptInsertNotificationMessage;"><div class="intempt-api-notification-message"><p>YOUR NOTIFICATION MESSAGE/p></div><div class="intempt-api-notification-btn-group"><button type="button" onclick="window._intempt.__td('8ce51fe2727fb')">Dismiss</button></div></div>"
+        //     html: "<div class="intempt-api-notificaiton-container" intempt-notification-id="8ce51fe2727fb" style="animation-name: intemptInsertNotificationMessage;"><div class="intempt-api-notification-message"><p>YOUR NOTIFICATION MESSAGE/p></div><div class="intempt-api-notification-btn-group"><button type="button" onclick="window._intempt.__td('8ce51fe2727fb')">Dismiss</button></div></div>",
+        //     labels: []
         // }
     })
 
@@ -105,12 +106,42 @@ Once the visitor dismisses your notification, we automatically find it in the pa
         // event.detail contains object payload, that looks like this:
         // {
         //     id: "abcdef12345",
-        //     html: "<div class="intempt-api-notificaiton-container" intempt-notification-id="8ce51fe2727fb" style="animation-name: intemptInsertNotificationMessage;"><div class="intempt-api-notification-message"><p>YOUR NOTIFICATION MESSAGE/p></div><div class="intempt-api-notification-btn-group"><button type="button" onclick="window._intempt.__td('8ce51fe2727fb')">Dismiss</button></div></div>"
+        //     html: "<div class="intempt-api-notificaiton-container" intempt-notification-id="8ce51fe2727fb" style="animation-name: intemptInsertNotificationMessage;"><div class="intempt-api-notification-message"><p>YOUR NOTIFICATION MESSAGE/p></div><div class="intempt-api-notification-btn-group"><button type="button" onclick="window._intempt.__td('8ce51fe2727fb')">Dismiss</button></div></div>",
+        //     labels: []
         // }
         //
     })
 
-Payload of this event contains dismissed notification content, both `id` and `html`
+Payload of this event contains dismissed notification content, both `id`, `html` and `labels`
+
+## Labels
+
+You can attach one or multiple labels to a campaign to distinguish notifications and process them differently on your page (e.g., display them in different locations). There are two ways of doing that.
+
+### Manually filter notifications by labels
+
+Events `intempt.notifications.notification` and `intempt.notifications.dismissed` are emitted for all notifications, that come to the client, both labeled and non-labeled ones. When a notification comes from a campaign, that has been attached to labels, payload would contain non-empty `labels` array, that has _names_ (the name of label is derived from its title and is displayed to the right of it in labels list) of all labels, that have been attached to that campaign:
+
+    {
+        id: "abcdef12345",
+        html: "<div class="intempt-api-notificaiton-container" intempt-notification-id="8ce51fe2727fb" style="animation-name: intemptInsertNotificationMessage;"><div class="intempt-api-notification-message"><p>YOUR NOTIFICATION MESSAGE/p></div><div class="intempt-api-notification-btn-group"><button type="button" onclick="window._intempt.__td('8ce51fe2727fb')">Dismiss</button></div></div>",
+        labels: ["label1", "label2"]
+    }
+
+This would be the same for both of the events. From here you can manually filter the notifications the way you want.
+However, that might not be convenient, if on a page you want to listen only for notifications with a specific label. For that, we created second way of filtering them.
+
+### Label-scoped notification events
+
+Aside from `intempt.notifications.notification` and `intempt.notifications.dismissed`, our API library also emits label-scoped event. That means, that for a notification with the following payload:
+
+    {
+        id: "abcdef12345",
+        html: "<div class="intempt-api-notificaiton-container" intempt-notification-id="8ce51fe2727fb" style="animation-name: intemptInsertNotificationMessage;"><div class="intempt-api-notification-message"><p>YOUR NOTIFICATION MESSAGE/p></div><div class="intempt-api-notification-btn-group"><button type="button" onclick="window._intempt.__td('8ce51fe2727fb')">Dismiss</button></div></div>",
+        labels: ["label1", "label2"]
+    }
+
+there will be not only `intempt.notifications.notification` emitted when this notification comes, but also `intempt.notifications.notification.label1` and `intempt.notifications.notification.label2`. When this notification would get dismissed, `intempt.notifications.dismissed`, `intempt.notifications.dismissed.label1` and `intempt.notifications.dismissed.label2` would be emitted. The payload of every of them would be exactly the same, but scoping them this way gives you better control of how you might process these notifications.
 
 #Example
 
