@@ -12,7 +12,7 @@ To load tracker on your page, include this code into your <head> or <body> tag:
 This code is auto-generated on your tracker's settings page and upon tracker's creation for convenience.
 
 Notifications mechanism is also auto-loaded onto the page, so once your visitor is compliant with campaign requirements, he will see notification ribbon appearing for him without any need to change anything from your side.
-However, if you want to display notifications somehow differently, for instance, use very custom design, you would need to do some modifications to the way tracker is loaded. Check [API Notifications Client](API Notifications Client) for details.
+However, if you want to display notifications somehow differently, for instance, use very custom design, you would need to do some modifications to the way tracker is loaded. Check [API Notifications Client](#api-notifications-client) for details.
 
 
 # Identify and track visitors
@@ -57,7 +57,7 @@ Notice some special features about our tracking. First, for tracking site purcha
 This example has also some additional important features about this call.
 In your custom event object you can include not only completely custom fields (`item`, `price` and `timestamp` in this example), but also any properties of our `fixed` collection. If these properties are included, they will be automatically processed by our system and taken into consideration in respective reports and segments.
 
-#API Notifications Client
+# API Notifications Client
 In case you want some really custom display of notifications your visitor recieves, you can use our notifications API.
 To disable default notifications display and enable API, first you need to modify your tracker insertion call to include `apiMode: true` in initialization parameters like this:
 
