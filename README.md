@@ -143,7 +143,19 @@ Aside from `intempt.notifications.notification` and `intempt.notifications.dismi
 
 there will be not only `intempt.notifications.notification` emitted when this notification comes, but also `intempt.notifications.notification.label1` and `intempt.notifications.notification.label2`. When this notification would get dismissed, `intempt.notifications.dismissed`, `intempt.notifications.dismissed.label1` and `intempt.notifications.dismissed.label2` would be emitted. The payload of every of them would be exactly the same, but scoping them this way gives you better control of how you might process these notifications.
 
-#Example
+# Example
 
 Check out `index.html` example, that has all the calls described in this `README.md` file!
 Follow the instructions in the file to prepare the example for usage!
+
+# Customize default notifications ribbon appearance
+
+When deciding to use Intempt notifications, you might not be yet ready to go for fullscale API integration, requiring (sometimes) substantial modifications to your product, however the default ribbon styling also might not be acceptable.
+For situations like this one, we have created a public CSS sample, which you can use to modify the look of notification ribbon for your website.
+
+You can download this CSS file here: https://cdn.intempt.com/notifications-sample.css
+
+To apply your customizations, simply add link to your custom ribbon CSS file (or add `style` tag) **inside your page's `<body>` tag**.
+
+#### Warning:
+Adding CSS to `<head>` tag would not work, as notifications ribbon loader would overwrite your changes.
