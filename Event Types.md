@@ -42,6 +42,8 @@ This means, that until you have defined an event of `Page Element` type, no data
 
 Any changes to element *after* it has appeared on the page are **not** tracked via this event type
 
+*IMPORTANT*: This event type captures the appearance of *the first element*, picked by specified selector and disappearance of *the last one*, left on the page. So, if your logic adds consequently 10 elements, *only* once the first one appears the event would be triggered. Similarly, if you have 10 elements on the page that you logic is removing, *only* once the last one is removed the disappearance event would be triggered.
+
 #### Page element changed
 *Captures changes of an element on a page. Once any property of the element is changed (which can be text, style, attributes and so on), its new state is captured and sent as an event.*
 
