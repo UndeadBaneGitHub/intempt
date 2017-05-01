@@ -12,7 +12,7 @@
           │──── family
           │──── major
           │──── minor
-          └──── patch
+           └──── patch
     first_seen
     identified
     initial_referrer
@@ -69,7 +69,7 @@
     └──── tracker
     intempt
     └──── visit
-         └──── trackcharge
+          └──── trackcharge
     keyword
     message
     messageVariant
@@ -1130,7 +1130,7 @@
     └──── zoom
           │──── number
           │──── unit
-          └──── value
+           └──── value
     title
     trackerid
     treated
