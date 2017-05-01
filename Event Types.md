@@ -37,6 +37,8 @@ Page element types are desiged to capture changes in elements on your page. That
 Page element event type is, unlike [`view page`](view-page) and [`interaction`](interaction) types is **non-retrospective** event type.
 This means, that until you have defined an event of `Page Element` type, no data capturing is being done.
 
+***WARNING***: tracking too many page elements can negatively affect performace of your pages. While very handy and convenient, try to restrict number of elements simultaneously tracked.
+
 #### Page element exists
 *Captures existence (appearance or disappearance) of an element on a page. Once an element appears (or a page with it is first opened), its state is captured and sent as an event, and until element disappears (or the respective page has been left).*
 
@@ -50,8 +52,6 @@ Any changes to element *after* it has appeared on the page are **not** tracked v
 This event is not triggered for the first appearance of an element - only once it has been changed after appearance this event would be received.
 
 To track page element changes, you should specify CSS selector for this element. This CSS selector can be in any form you might choose: it could be a specific path to a specific element, or it can be a more generic class-based selector.
-
-***WARNING***: tracking too many page elements can affect performace of your pages. While very handy and convenient, try to restrict number of elements simultaneously tracked.
 
 ### Custom
 
