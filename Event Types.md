@@ -14,11 +14,11 @@ You can capture it by specifying an exact path (`/shop/my-category/my-product`),
 
 All event types from interaction group are focusing interaction with specific elements (buttons, forms, inputs etc.) on the page.
 
-You can capture it by specifying an exact form CSS path or path with wildcard in provided input field.
+You can capture it by specifying an exact element's CSS path or path with wildcard in provided input field.
 
-You can also omit specifying exact path, and go for `Filter` button, and pick more page-agnostic input attributes to track, like `id`, `class` and so on. [Here](interaction-properties) you can find the entire list of the properties we track for elements
+You can also omit specifying exact path, and go for `Filter` button, and pick more page-agnostic attributes to track, like `id`, `class` and so on. [Here](interaction-properties) you can find the entire list of the properties we track for elements
 
-**WARNING**: the path is specific for this particular input on this particular page, and is built so that it does not include ids or class names. The best tool to acquire a path like that is to use our **Event visualizer** tool. 
+**WARNING**: the path is specific for this particular element on this particular page, and is built so that it does not include ids or class names. The best tool to acquire a path like that is to use our **Event visualizer** tool. 
 However, we recommend going for more generic attributes.
 
 #### Click on
@@ -37,8 +37,6 @@ Page element types are desiged to capture changes in elements on your page. That
 Page element event type is, unlike [`view page`](view-page) and [`interaction`](interaction) types is **non-retrospective** event type.
 This means, that until you have defined an event of `Page Element` type, no data capturing is being done.
 
-***WARNING***: tracking too many page elements can negatively affect performace of your pages. While very handy and convenient, try to restrict number of elements simultaneously tracked.
-
 #### Page element exists
 *Captures existence (appearance or disappearance) of an element on a page. Once an element appears (or a page with it is first opened), its state is captured and sent as an event, and until element disappears (or the respective page has been left).*
 
@@ -53,6 +51,45 @@ This event is not triggered for the first appearance of an element - only once i
 
 To track page element changes, you should specify CSS selector for this element. This CSS selector can be in any form you might choose: it could be a specific path to a specific element, or it can be a more generic class-based selector.
 
+***WARNING***: tracking too many page elements can affect performace of your pages. While very handy and convenient, try to restrict number of elements simultaneously tracked.
+
+## iOS
+
+Much like for Web tracking, for iOS tracking we also generate unique path for each element and each view with start at the main window.
+As iOS does not have "common" unique path mechanism, we devised a CSS-like path ourselves to improve quality of tracked data and prevent miscaptures.
+
+This however means, that it is very hard to write down this path manually, so if you plan on using view element path to track interaction with specific element in specific view, it is almost essential to use our **Event Stream** tool.
+
+### View open
+*Captures visitor's viewing a specific view in your app.*
+
+You can capture it by specifying an exact path, wildcard path to cover a group of views in provided input field or by using `Filter` button and picking any other [view-related properties](view-properties).
+
+### Interaction
+
+Captures touches, slides, zoom-ins and changes for all elements in all views.
+
+You can capture specific interaction with specific element by specifying an exact path or path with wildcard to this element in provided input field.
+
+You can also omit specifying exact path, and go for `Filter` button, and pick more element-agnostic attributes to track, like `UIViewController`, `class` and so on. [Here](ios-interaction-properties) you can find the entire list of the properties we track for elements
+
+**WARNING**: the path is specific for this particular element on this particular view. The best tool to acquire a path like that is to use our **Event Stream** tool. 
+However, we recommend going for more generic attributes.
+
+#### Touch on
+*Captures visitor's touching on any element on the page. This can be a button, link or even "passive" variant (like image with no action).*
+
+#### Change on
+*Captures visitor's changing an input like text input, radio button, checkboxes and text areas.*
+
+### Interaction Action
+*Captures any action, that happens within your app, caused by user's action or automatic*
+
+You can capture specific action by providing its full name in the given input (e.g. `someAction:withParams:andSomeMore:`), or by omiting it and adding `target` or `sender`-specific properties in `Filter` section.
+
+For `target` and `sender` minimal tracked property is `class` - only this property is tracked for non-visual `target`s and `sender`s. However, if either of them is visual, for such more properties would be tracked, similar to [Interaction](interaction) event type elements
+
+## Common
 ### Custom
 
 Our client-side API allows creation of any event type you might desire to be tracked for your page or application.
