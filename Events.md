@@ -113,7 +113,7 @@ You can capture specific action by providing its full name in the given input (e
 For `target` and `sender` minimal tracked property is `class` - only this property is tracked for non-visual `target`s and `sender`s. However, if either of them is visual, for such more properties would be tracked, similar to [Interaction](interaction) event type elements
 
 ## Common
-### Custom (`custom` collection)
+### Custom (`visitor`, `visit`, `identify` and custom collections)
 
 Our client-side API allows creation of any event type you might desire to be tracked for your page or application.
 
