@@ -38,6 +38,8 @@
         │── source
         │── term
     │── visitorid
+    
+   
     timeseries
     │── applicationid
     │── campaign_id
