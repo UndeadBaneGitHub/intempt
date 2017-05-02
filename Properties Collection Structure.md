@@ -1,3 +1,37 @@
+    applicationid
+    campaign_id
+    campaign_name
+    clicked
+    client_ip
+    control
+    email
+    eventid
+    first_seen
+    fixed
+    href
+    identified
+    identified
+    identifier
+    keyword
+    landing_page
+    lang
+    message
+    messageVariant
+    platform
+    received
+    sent
+    timezone
+    title
+    trackerid
+    treated
+    treater_id
+    treater_name
+    treatment_name
+    treatment_value
+    type
+    uuid
+    visitid
+    visitorid
     browser
     ├──── device
     │     │──── family
@@ -12,9 +46,7 @@
           │──── family
           │──── major
           │──── minor
-           └──── patch
-    first_seen
-    identified
+          └──── patch
     initial_referrer
     │──── domain
     │──── hash
@@ -23,26 +55,15 @@
     │──── path
     │──── port
     └──── query
-    landing_page
-    lang
-    platform
     screen
     │──── color_depth
     └──── resolution
-    timezone
     utm
     │──── campaign
     │──── content
     │──── medium
     │──── source
     └──── term
-    visitorid
-    applicationid
-    campaign_id
-    campaign_name
-    clicked
-    client_ip
-    control
     element
     │──── classList
     │──── className
@@ -56,12 +77,6 @@
     │──── text
     │──── type
     └──── value
-    email
-    eventid
-    fixed
-    href
-    identified
-    identifier
     ids
     │──── id
     │──── org
@@ -70,10 +85,6 @@
     intempt
     └──── visit
           └──── trackcharge
-    keyword
-    message
-    messageVariant
-    received
     referrer
     │──── domain
     │──── hash
@@ -85,7 +96,6 @@
     │──── port
     │──── protocol
     └──── query
-    sent
     style
     ├──── -webkit-app-region
     │     │──── number
@@ -1130,15 +1140,7 @@
     └──── zoom
           │──── number
           │──── unit
-           └──── value
-    title
-    trackerid
-    treated
-    treater_id
-    treater_name
-    treatment_name
-    treatment_value
-    type
+          └──── value
     url
     │──── hash
     │──── host
@@ -1150,6 +1152,3 @@
     │──── protocol
     │──── query
     └──── domain
-    uuid
-    visitid
-    visitorid
