@@ -1,3 +1,25 @@
+# Properties overview
+
+Properties are tools by which you can properly slice the data that we have automatically collected from your website or application. Using them in our event and segment constructors via applying filters (`Filter` button) you can slice out pretty precise behaviors, like "new visitors who have seen the page twice and clicked some Add To Cart button" or "recurring male visitors from Brazil who have not made a new purchase withing the last month". To allow identifying such wide variety of actions, default property structure has to be really complex (and it is, as you can see in [structure](properties-structure) section).
+
+However, if you find, that you somehow cannot slice desired actions well enough, or it is too inconvenient, you can also dynamically define new properties and even new event collections via our [API](https://github.com/intempt/intempt/blob/master/API.md).
+
+## Property name structure
+
+Our properties are hierarchical, split into collections for convenience in the interface, and are also filtered by [event collections](https://github.com/intempt/intempt/blob/master/Events.md) (for example, properties for `timeseries.element` are visible only while creating elements-related events, like `interaction` or `page_element_changed`).
+
+For convenience in UI, our hierarchy is flattened with parent collections preceeding child in property names. So, for example, name for property `value` for `background-color` in collection `style`, in collection `timeseries` would look in query constructor like `timeseries.style.background-color.value`.
+
+Every property in constructor is also decorated with human-readable title and description, allowing easier navigation amongst them. So while there are many various properties in many various collections displayed in the list, entering desired "background" or "Element" would filter the wide list to a much more usable and relative selection.
+
+# Properties collections details
+
+## `fixed` collection
+
+## `timeseries` collection
+
+# Properties structure
+
     fixed
     ├── browser
     │   ├── device
