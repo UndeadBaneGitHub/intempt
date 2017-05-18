@@ -157,7 +157,34 @@ For situations like this one, we have created a public CSS sample, which you can
 
 You can download this CSS file here: https://cdn.intempt.com/notifications-sample.css
 
+It can also be more convenient for you to use LESS file for editing and generating CSS from: https://cdn.intempt.com/notifications-sample.less
+
 To apply your customizations, simply add link to your custom ribbon CSS file (or add `style` tag) **inside your page's `<body>` tag**.
 
+The HTML of default notifications pod is appended to the end of `<body>` tag by our initialization screen, and its structure looks like this (while the pod is invisible):
+```
+<div class="intempt-web-notifications intempt-show-strip intempt-hide-strip">
+    <div class="intempt-web-notification-content" style="opacity: 1;">
+        <div class="intempt-web-notification-message"></div>
+        <button type="button" onclick="window.__intempt.dismissWebNotification()">Dismiss</button>
+    </div>
+    <div class="intempt-badge">Powered by <a href="https://intempt.com" target="_blank" data-original-title="" title="">Intempt</a></div>
+</div>
+```
+
+When a notification arrives and is displayed, the content is updated to contain it. Here is an example of visible pod with `Hello world` content:
+```
+<div class="intempt-web-notifications intempt-show-strip">
+    <div class="intempt-web-notification-content" style="opacity: 1;">
+        <div class="intempt-web-notification-message">
+            <h1>Hello world!</h1>
+            <h2>Hello world!</h2>
+            <p>Hello world! <b>Hello world!</b> <i>Hello world!</i> <a href="http://google.com" target="_blank">Hello world!</a></p>
+        </div>
+        <button type="button" onclick="window.__intempt.dismissWebNotification()">Dismiss</button>
+    </div>
+    <div class="intempt-badge">Powered by <a href="https://intempt.com" target="_blank">Intempt</a></div>
+</div>
+```
 ##### Warning:
 Adding CSS to `<head>` tag would not work, as notifications ribbon loader would overwrite your changes.
