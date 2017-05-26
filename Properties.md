@@ -19,6 +19,8 @@ Every property in constructor is also decorated with human-readable title and de
 Non-event-specific properties that are always tracked and populated for every event. They describe things like browser or operating system properties, timezone, whether visitor is identified and when was this visitor first to the website and so on.
 Properties from this collection are also the only ones, available for being used in **segment** filters directly (all others are limited to events).
 
+In this category also fall `visitor` and `visit`-related properties (as they are pretty static) like geolocation or browser data.
+
 ## `timeseries` collection
 
 Event-specific properties, subsets of which are collected, varying by [event collections](https://github.com/intempt/intempt/blob/master/Events.md). This high-level collection also would contain whatever custom collection might be created on client side. In sub-collections of `timeseries` one can find various information, like `element` properties (`id`, `class` etc.), style attributes for `page_element_exists` and `page_element_failed` events, ID of campaign, which the visitor has qualified for and so on.
