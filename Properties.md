@@ -42,7 +42,20 @@ Event-specific properties, subsets of which are collected, varying by [event col
     │       ├── minor
     │       └── patch
     ├── first_seen
+    ├── geo
+    │   ├── city
+    │   ├── country
+    │   │   ├── iso_code
+    │   │   └── name
+    │   ├── location
+    │   │   ├── lat
+    │   │   └── lon
+    │   ├── postal
+    │   └── subdivision
+    │       ├── iso_code
+    │       └── name
     ├── identified
+    ├── identifier
     ├── initial_referrer
     │   ├── domain
     │   ├── hash
