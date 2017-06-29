@@ -53,6 +53,16 @@
 
 <div id="notification-pod"></div>
 
+<p>
+    To get label-based notifications in API mode, create a label "My Label" and attach it to your campaign. Then you would be able to see the notification right below this paragraph.
+</p>
+
+<div id="label-notification-pod"></div>
+
+<p>
+    You would also see dismissal alerts for both unlabeled and labeled notifications dismissal (when label present)
+</p>
+
 <script type="text/javascript">
     window.orgId = "your-org-name";
     window.trackerId = "your-tracker-name";
@@ -104,12 +114,19 @@ window.addEventListener("intempt." + window.trackerName + ".ready", function() {
 </script>
 <script type="text/javascript">
     var notificationPod = document.querySelector('#notification-pod');
+    var labelNotificationPod = document.querySelector('#label-notification-pod');
 
     window.addEventListener('intempt.notifications.notification', function(event) {
         notificationPod.innerHTML = event.detail.html;
     }, false);
     window.addEventListener('intempt.notifications.dismissed', function(event) {
         alert("Notification with ID " + event.detail.id + " was dismissed!");
+    }, false);
+    window.addEventListener('intempt.notifications.notification.my-label', function(event) {
+        labelNotificationPod.innerHTML = event.detail.html;
+    }, false);
+    window.addEventListener('intempt.notifications.dismissed.my-label', function(event) {
+        alert("Notification with ID " + event.detail.id + " and label \"My Label\" was dismissed!");
     }, false);
 </script>
 </body>
